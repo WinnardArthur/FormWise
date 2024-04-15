@@ -29,6 +29,8 @@ model Form {
   createdAt DateTime @default(now())
 
   formSubmission FormSubmission[]
+
+  @@unique([name, userId])
 }
 
 model FormSubmission {
