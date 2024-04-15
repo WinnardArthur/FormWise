@@ -43,6 +43,7 @@ export const GetFormStats = async () => {
   };
 };
 
+// Create a new form
 export const createForm = async (data: FormSchemaType) => {
   const validation = formSchema.safeParse(data);
 
@@ -70,3 +71,23 @@ export const createForm = async (data: FormSchemaType) => {
 
   return form.id;
 };
+
+// Fetch all forms
+export async function GetForms() {
+  const user = await currentUser();
+
+  if (!user) {
+    throw new UserNotFoundError();
+  }
+
+  const forms = prisma.form.findMany({
+    where: {
+      userId: user.id,
+    },
+    orderBy: {
+      createdAt: "desc",
+    },
+  });
+
+  return forms;
+}
