@@ -9,6 +9,7 @@ import {
 } from "@/components/form-elements";
 import { PropertiesComponent } from "./text-field-components/properties-component";
 import { DesignerComponent } from "./text-field-components/designer-component";
+import { FormComponent } from "./text-field-components/form-component";
 
 const type: ElementsType = "TextField";
 
@@ -31,7 +32,7 @@ export const TextFieldFormElement: FormElements = {
     label: "Text field",
   },
   designerComponent: DesignerComponent,
-  formComponent: () => <div>Form Component</div>,
+  formComponent: FormComponent,
   propertiesComponent: PropertiesComponent,
 };
 
