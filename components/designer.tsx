@@ -48,6 +48,7 @@ const Designer = () => {
 
         // Add element end of elements array
         addElement(elements.length, newElement);
+        return;
       }
 
       const isDroppingOverDesignerElementTopHalf =
@@ -60,8 +61,12 @@ const Designer = () => {
         isDroppingOverDesignerElementTopHalf ||
         isDroppingOverDesignerElementBottomHalf;
 
-      // Case 2: Dropping over a designer element eg: Another TextField
-      if (isDroppingOverDesignerElement) {
+      const isDroppingSidebarButtonOverDesignerElement =
+        isDesignerButtonElement && isDroppingOverDesignerElement;
+
+      // Case 2: Dragging a sidebar button and dropping over
+      // a designer element eg: Another TextField
+      if (isDroppingSidebarButtonOverDesignerElement) {
         const type = active.data?.current?.type;
         const newElement = FormElements[type as ElementsType].construct(
           idGenerator()
@@ -82,6 +87,7 @@ const Designer = () => {
         }
 
         addElement(newElementIndex, newElement);
+        return;
       }
 
       // Case 3: Dragging a designer element over another designer element. eg: TextField over another TextField
