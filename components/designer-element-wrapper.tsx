@@ -12,7 +12,7 @@ const DesignerElementWrapper = ({
 }: {
   element: FormElementInstance;
 }) => {
-  const { removeElement } = useDesigner();
+  const { removeElement, selectedElement, setSelectedElement } = useDesigner();
 
   const [isMouseOver, setIsMouseOver] = useState(false);
 
@@ -54,6 +54,10 @@ const DesignerElementWrapper = ({
       {...draggable.attributes}
       onMouseEnter={() => setIsMouseOver(true)}
       onMouseLeave={() => setIsMouseOver(false)}
+      onClick={(e) => {
+        e.stopPropagation();
+        setSelectedElement(element);
+      }}
       className="relative h-[120px] flex flex-col text-foreground hover:cursor-pointer rounded-md ring-1 ring-accent ring-inset"
     >
       <div
@@ -71,7 +75,8 @@ const DesignerElementWrapper = ({
             <Button
               variant="outline"
               className="flex justify-center h-full border rounded-md rounded-l-none bg-red-500"
-              onClick={() => {
+              onClick={(e) => {
+                e.stopPropagation();
                 removeElement(element.id);
               }}
             >

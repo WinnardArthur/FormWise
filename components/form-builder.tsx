@@ -2,21 +2,37 @@
 
 import React from "react";
 import { Form } from "@prisma/client";
+import { DndContext, MouseSensor, TouchSensor, useSensor, useSensors } from "@dnd-kit/core";
 
 import { PreviewDialogButton } from "./preview-dialog-button";
 import { SaveFormButton } from "./save-form-button";
 import { PublishFormButton } from "./publish-form-button";
 import Designer from "./designer";
-import { DndContext } from "@dnd-kit/core";
+import DragOverlayWrapper from "./drag-overlay-wrapper";
 
 interface FormBuilderProps {
   form: Form;
 }
 
 const FormBuilder = ({ form }: FormBuilderProps) => {
+  const mouseSensor = useSensor(MouseSensor, {
+    activationConstraint: {
+      distance: 10,
+    },
+  });
+
+  const touchSensor = useSensor(TouchSensor, {
+    activationConstraint: {
+      delay: 300,
+      tolerance: 5,
+    }
+  })
+
+  const sensors = useSensors(mouseSensor, touchSensor);
+
   return (
-    <DndContext>
-      <div className="flex flex-col w-full">
+    <DndContext sensors={sensors}>
+      <main className="flex flex-col w-full">
         <nav className="flex justify-between border-b-2 p-4 gap-3 items-center">
           <h2 className="truncate font-medium">
             <span className="text-muted-foreground mr-2">Form:</span>
@@ -35,7 +51,8 @@ const FormBuilder = ({ form }: FormBuilderProps) => {
         <div className="flex w-full flex-grow items-center justify-center relative overflow-y-auto h-[500px] bg-accent bg-[url(/paper-background.svg)] dark:bg-[url(/paper-background-dark.svg)]">
           <Designer />
         </div>
-      </div>
+      </main>
+      <DragOverlayWrapper />
     </DndContext>
   );
 };
