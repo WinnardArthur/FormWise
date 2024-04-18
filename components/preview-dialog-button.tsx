@@ -25,7 +25,7 @@ const PreviewDialogButton = () => {
             This is how your form will look like to your users.
           </p>
         </div>
-        <div className="bg-accent flex flex-col items-center justify-center flex-grow p-4 bg-[url('paper-background.svg')] dark:bg-[url('paper-background-dark.svg')] overflow-y-auto">
+        <div className="bg-accent flex flex-col items-center justify-center flex-grow p-4 bg-[url('/paper-background.svg')] dark:bg-[url('/paper-background-dark.svg')] overflow-y-auto">
           <div className="max-w-[620px] flex flex-col gap-4 flex-grow bg-background h-full w-full rounded-3xl p-8 overflow-y-auto">
             {elements.map((element) => {
               const FormComponent = FormElements[element.type].formComponent;

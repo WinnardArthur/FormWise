@@ -2,7 +2,13 @@
 
 import React from "react";
 import { Form } from "@prisma/client";
-import { DndContext, MouseSensor, TouchSensor, useSensor, useSensors } from "@dnd-kit/core";
+import {
+  DndContext,
+  MouseSensor,
+  TouchSensor,
+  useSensor,
+  useSensors,
+} from "@dnd-kit/core";
 
 import { PreviewDialogButton } from "./preview-dialog-button";
 import { SaveFormButton } from "./save-form-button";
@@ -25,8 +31,8 @@ const FormBuilder = ({ form }: FormBuilderProps) => {
     activationConstraint: {
       delay: 300,
       tolerance: 5,
-    }
-  })
+    },
+  });
 
   const sensors = useSensors(mouseSensor, touchSensor);
 
@@ -42,7 +48,7 @@ const FormBuilder = ({ form }: FormBuilderProps) => {
             <PreviewDialogButton />
             {!form.published && (
               <>
-                <SaveFormButton />
+                <SaveFormButton id={form.id} />
                 <PublishFormButton />
               </>
             )}
