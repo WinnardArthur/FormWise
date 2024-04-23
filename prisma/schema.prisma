@@ -24,7 +24,7 @@ model Form {
   published   Boolean @default(false)
   visits      Int     @default(0)
   submissions Int     @default(0)
-  shareUrl    String  @default(uuid())
+  shareUrl    String  @default(uuid()) @unique
 
   createdAt DateTime @default(now())
 

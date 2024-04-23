@@ -149,5 +149,24 @@ export const publishFormButton = async (id: number) => {
     },
   });
 
-  return publishedForm
+  return publishedForm;
+};
+
+// Get form content by url
+export const getFormByContentUrl = (formUrl: string) => {
+  const updatedForm = prisma.form.update({
+    where: {
+      shareUrl: formUrl,
+    },
+    data: {
+      visits: {
+        increment: 1,
+      },
+    },
+    select: {
+      content: true,
+    },
+  });
+
+  return updatedForm;
 };
