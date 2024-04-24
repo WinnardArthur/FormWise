@@ -23,6 +23,7 @@ export const FormElementSidebar = () => {
         <SidebarButtonElement formElement={FormElements.TextField} />
         <SidebarButtonElement formElement={FormElements.NumberField} />
         <SidebarButtonElement formElement={FormElements.TextareaField} />
+        <SidebarButtonElement formElement={FormElements.DateField} />
       </div>
     </div>
   );
