@@ -2,10 +2,15 @@ import React from "react";
 import { TextFieldFormElement } from "./fields/text-field/text-field";
 import { TitleFieldFormElement } from "./fields/title-field/title-field";
 import { SubTitleFieldFormElement } from "./fields/sub-title-field/sub-title-field";
+import { ParagraphFieldFormElement } from "./fields/paragraph-field/paragraph-field";
 
 export type SubmitFunctionType = (key: string, value: string) => void;
 
-export type ElementsType = "TextField" | "TitleField" | "SubTitleField";
+export type ElementsType =
+  | "TextField"
+  | "TitleField"
+  | "SubTitleField"
+  | "ParagraphField";
 
 export type FormElements = {
   type: ElementsType;
@@ -43,4 +48,5 @@ export const FormElements: FormElementsType = {
   TextField: TextFieldFormElement,
   TitleField: TitleFieldFormElement,
   SubTitleField: SubTitleFieldFormElement,
+  ParagraphField: ParagraphFieldFormElement,
 };
