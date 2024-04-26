@@ -19,7 +19,7 @@ export function StatsCards({ data, loading = false }: StatsCardsProps) {
         helperText="All time form visits"
         value={data?.visits.toLocaleString() || ""}
         loading={loading}
-        className="shadow-md shadow-blue-600"
+        className="shadow-sm shadow-blue-600"
       />
       <StatsCard
         title="Total Submissions"
@@ -27,23 +27,23 @@ export function StatsCards({ data, loading = false }: StatsCardsProps) {
         helperText="All time form submissions"
         value={data?.submissions.toLocaleString() || ""}
         loading={loading}
-        className="shadow-md shadow-yellow-600"
+        className="shadow-sm shadow-amber-500"
       />
       <StatsCard
         title="Submission rate"
         icon={<HiCursorClick className="text-green-600" />}
         helperText="Visits that results in form submission"
-        value={data?.visits.toLocaleString() + "%" || ""}
+        value={data?.submissionRate.toLocaleString() + "%" || ""}
         loading={loading}
-        className="shadow-md shadow-green-600"
+        className="shadow-sm shadow-green-600"
       />
       <StatsCard
         title="Bounce rate"
         icon={<TbArrowBounce className="text-red-600" />}
         helperText="Visits that leave without interactions"
-        value={data?.visits.toLocaleString() + "%" || ""}
+        value={data?.bouncedRate.toLocaleString() + "%" || ""}
         loading={loading}
-        className="shadow-md shadow-red-600"
+        className="shadow-sm shadow-red-600"
       />
     </div>
   );
