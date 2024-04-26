@@ -29,7 +29,7 @@ interface FormBuilderProps {
 }
 
 const FormBuilder = ({ form }: FormBuilderProps) => {
-  const { setElements } = useDesigner();
+  const { setElements, setSelectedElement } = useDesigner();
 
   const [isReady, setIsReady] = useState(false);
 
@@ -53,8 +53,9 @@ const FormBuilder = ({ form }: FormBuilderProps) => {
 
     const elements = JSON.parse(form.content);
     setElements(elements);
+    setSelectedElement(null);
     setIsReady(true);
-  }, [form, setElements]);
+  }, [form, setElements, isReady, setSelectedElement]);
 
   if (!isReady) {
     return (

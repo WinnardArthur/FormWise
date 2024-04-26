@@ -1,12 +1,13 @@
 "use client";
 
-import React, { useRef, useState, useTransition } from "react";
+import React, { useCallback, useRef, useState, useTransition } from "react";
 import { FormElementInstance, FormElements } from "./form-elements";
 import { Button } from "./ui/button";
 import { HiCursorClick } from "react-icons/hi";
 import { toast } from "./ui/use-toast";
 import { ImSpinner2 } from "react-icons/im";
 import { submitForm } from "@/actions/form";
+import Link from "next/link";
 
 const FormSubmitComponent = ({
   formUrl,
@@ -22,7 +23,7 @@ const FormSubmitComponent = ({
   const [submitted, setSubmitted] = useState(false);
   const [pending, startTransition] = useTransition();
 
-  const validateForm: () => boolean = () => {
+  const validateForm: () => boolean = useCallback(() => {
     for (const field of content) {
       const actualValue = formValues.current[field.id] || "";
       const valid = FormElements[field.type].validate(field, actualValue);
@@ -37,7 +38,7 @@ const FormSubmitComponent = ({
     }
 
     return true;
-  };
+  }, [content]);
 
   const submitValue = (key: string, value: string) => {
     formValues.current[key] = value;
@@ -51,9 +52,11 @@ const FormSubmitComponent = ({
       setRenderKey(new Date().getTime());
       toast({
         title: "Error",
-        description: "Please check the form for errors",
+        description: "Please fill all required fields",
         variant: "destructive",
       });
+
+      return;
     }
 
     try {
@@ -77,8 +80,11 @@ const FormSubmitComponent = ({
           <p className="text-muted-foreground">
             Thank you for submitting the form, you can close this page now.
           </p>
+          <Button asChild className="mt-8">
+            <Link href="/">Go back</Link>
+          </Button>
         </div>
-      </div> 
+      </div>
     );
   }
 

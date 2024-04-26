@@ -52,7 +52,7 @@ const FormDetailPage = async ({ params }: { params: { id: string } }) => {
         />
       </div>
 
-      <div className="container pt-10">
+      <div className="container py-10">
         <SubmissionTable id={form.id} />
       </div>
     </>

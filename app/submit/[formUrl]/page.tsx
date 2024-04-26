@@ -10,7 +10,7 @@ const SubmitPage = async ({ params }: { params: { formUrl: string } }) => {
   if (!form) {
     throw new Error("Form not found");
   }
-  
+
   const formContent = JSON.parse(form.content) as FormElementInstance[];
 
   return <FormSubmitComponent formUrl={params.formUrl} content={formContent} />;
