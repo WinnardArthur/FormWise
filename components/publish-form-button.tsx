@@ -1,6 +1,7 @@
 import React, { FormEvent, useTransition } from "react";
-import { Button } from "@/components/ui/button";
+import { useRouter } from "next/navigation";
 import { MdOutlinePublish } from "react-icons/md";
+import { FaSpinner } from "react-icons/fa";
 
 import {
   AlertDialog,
@@ -13,10 +14,9 @@ import {
   AlertDialogTitle,
   AlertDialogCancel,
 } from "@/components/ui/alert-dialog";
-import { FaIcons } from "react-icons/fa";
-import { toast } from "./ui/use-toast";
+import { toast } from "@/components/ui/use-toast";
+import { Button } from "@/components/ui/button";
 import { publishFormButton } from "@/actions/form";
-import { useRouter } from "next/navigation";
 
 const PublishFormButton = ({ id }: { id: number }) => {
   const [isLoading, startTransition] = useTransition();
@@ -64,7 +64,7 @@ const PublishFormButton = ({ id }: { id: number }) => {
         <AlertDialogFooter>
           <AlertDialogCancel>Cancel</AlertDialogCancel>
           <AlertDialogAction disabled={isLoading} onClick={handlePublishForm}>
-            Procced {isLoading && <FaIcons className="animate-spin ml-2" />}
+            Procced {isLoading && <FaSpinner className="animate-spin ml-2" />}
           </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
